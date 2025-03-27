@@ -80,7 +80,7 @@ Vdv* timtttotnhat(Vdv* vdv) {
 Vdv* vdvttbangkhong(Vdv* &vdv) {
 	Vdv* result = NULL;
 	Vdv* tmp = vdv;
-	Vdv* tmp1 = NULL;
+	Vdv* vdv1 = NULL;
 	if(vdv == NULL) return NULL;
 	else {
 		while(tmp != NULL) {
@@ -89,14 +89,11 @@ Vdv* vdvttbangkhong(Vdv* &vdv) {
 				tmp = tmp->next;
 			}
 			else {
-				if(tmp->tt > 0) {
-					tmp = tmp->next;
-				}
-				else {
-					tmp = tmp->next;
-				}
+				themvdv(vdv1, tmp->tdv, tmp->tt);
+				tmp = tmp->next;
 			}
 		}
+		vdv = vdv1;
 	}
 	return result;
 }
@@ -124,8 +121,6 @@ int main()
 	else cout << "Khong tim thay thanh tich chay tot nha cua cac vdv" << endl;
 	cout << "Day la danh sach vdv khi chua xoa vdv co thanh tich = 0" << endl;
 	indsvdv(vdv);
-	cout << "Day la danh sach vdv khi da xoa nhung vdv co thanh tich = 0" << endl;
-	indsvdv(vdv);
 	cout << "Day la danh sach cac vdv co thanh tich = 0:" << endl;
 	Vdv* newvdv2 = vdvttbangkhong(vdv);
 	if(newvdv2 != NULL) {
@@ -135,5 +130,10 @@ int main()
 		} 
 	}
 	else cout << "Khong co van dong vien nao co thanh tich bang 0";
+	cout << "Day la danh sach vdv khi da xoa nhung vdv co thanh tich = 0" << endl;
+	while(vdv != NULL) {
+		cout << vdv->tdv << " " << vdv->tt << endl;
+		vdv = vdv->next;
+	}
     return 0;
 }
